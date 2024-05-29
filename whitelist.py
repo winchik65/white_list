@@ -43,16 +43,16 @@ def encrypt_file(file_name, key):
 def ecrypt_folder(folder_name):
     key = get_key()
     if(folder_name == ''):
-        path = os.path.join(os.getcwd(), '**\\*.*')  #Create a path to files in the current directory
+        path = os.path.join(os.getcwd(), '**/*.*')  #Create a path to files in the current directory
     else:
-        path = os.path.join(folder_name, '**\\*.*')
+        path = os.path.join(folder_name, '**/*.*')
         
     for file in glob.glob(path, recursive=True):
         encrypt_file(file, key)
         
 
 def list_files(dir_name):
-    for file in glob.glob(os.path.join(dir_name, '**\\*.*'), recursive=True):
+    for file in glob.glob(os.path.join(dir_name, '**/*.*'), recursive=True):
         print(file)
 
 
@@ -76,9 +76,9 @@ def decrypt_file(file_name):
 def decrypt_folder(folder_name):
     key = get_key()
     if(folder_name == ''):
-        path = os.path.join(os.getcwd(), '**\\*.*')
+        path = os.path.join(os.getcwd(), '**/*.*')
     else:
-        path = os.path.join(folder_name, '**\\*.*')
+        path = os.path.join(folder_name, '**/*.*')
         
     for file in glob.glob(path, recursive=True):
         decrypt_file(file)
