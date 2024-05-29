@@ -27,7 +27,8 @@ def encrypt(file_name):
     if file_name == '' or os.path.isdir(file_name):
         ecrypt_folder(file_name)
     else:
-        encrypt_file(file_name)
+        key = get_key()
+        encrypt_file(file_name, key)
 
 def encrypt_file(file_name, key):
     fernet = key
@@ -60,11 +61,12 @@ def decrypt(file_name):
     if file_name == '' or os.path.isdir(file_name):
         decrypt_folder(file_name)
     else:
-        decrypt_file(file_name)
+        key = get_key()
+        decrypt_file(file_name, key)
 
-def decrypt_file(file_name):
+def decrypt_file(file_name, key):
     if not (".db" in file_name) and not ("~$" in file_name) :
-        fernet = get_key()
+        fernet = key
         with open(file_name, 'rb') as file:
             original = file.read()
         enc = fernet.decrypt(original)
@@ -81,7 +83,7 @@ def decrypt_folder(folder_name):
         path = os.path.join(folder_name, '**/*.*')
         
     for file in glob.glob(path, recursive=True):
-        decrypt_file(file)
+        decrypt_file(file, key)
 
 def help_info():
     print("""
