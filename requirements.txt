@@ -1,0 +1,9 @@
+altgraph
+cffi
+cryptography
+packaging
+pycparser
+pyinstaller
+pyinstaller-hooks-contrib
+setuptools
+wheel
